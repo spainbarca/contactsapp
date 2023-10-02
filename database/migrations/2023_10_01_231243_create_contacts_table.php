@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone_number');
+            $table->string('email');
+            $table->unsignedTinyInteger('age');
 
             $table->string('user_register')->default('admin');
             $table->ipAddress('visitor')->default('127.0.0.1');

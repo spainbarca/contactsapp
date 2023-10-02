@@ -22,7 +22,10 @@ class StoreContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'required|min:5',
+            'phone_number' =>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
+            'email'=>'required|email',
+            'age' =>'required|numeric|min:15'
         ];
     }
 }
