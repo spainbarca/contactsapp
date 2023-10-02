@@ -21,7 +21,7 @@
     @yield('css')
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/css/icons.min.css','resources/css/theme.min.css','resources/js/theme.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/css/icons.min.css','resources/css/theme.min.css','resources/js/theme.js','resources/css/bootstrap.min.css'])
 
     <!-- jQuery  -->
     <script src={{asset('js/jquery.min.js')}}></script>
