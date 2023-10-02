@@ -35,7 +35,7 @@
                                         <th>Correo</th>
                                         <th>Edad</th>
                                         <th>Teléfono</th>
-                                        <th width="10%">Acciones</th>
+                                        <th width="20%">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,7 +46,7 @@
                                             <td>{{ $contact->email }}</td>
                                             <td>{{ $contact->age }}</td>
                                             <td>{{ $contact->phone_number }}</td>
-                                            <td width="10%">
+                                            <td width="20%">
                                                 <button type="button" class="btn btn-warning waves-effect waves-light">{{ __('Editar') }}</button>
                                                 <button type="button" class="btn btn-danger waves-effect waves-light">{{ __('Eliminar') }}</button>
                                             </td>
