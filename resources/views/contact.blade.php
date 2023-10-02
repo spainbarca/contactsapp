@@ -8,7 +8,8 @@
                 <div class="card-header">Create new Contact</div>
 
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('contact.store') }}">
+                        @csrf
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
@@ -24,12 +25,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="phone-number" class="col-md-4 col-form-label text-md-end">{{ __('Phone Number') }}</label>
+                            <label for="phone_number" class="col-md-4 col-form-label text-md-end">{{ __('Phone Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone-number" type="tel" class="form-control @error('phone-number') is-invalid @enderror" name="phone-number" value="{{ old('phone-number') }}" required autocomplete="phone-number">
+                                <input id="phone-number" type="tel" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
 
-                                @error('phone-number')
+                                @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

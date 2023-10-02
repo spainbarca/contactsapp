@@ -1,8 +1,9 @@
 <?php
 
 use GuzzleHttp\Psr7\Request;
-use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use Illuminate\Http\Request as HttpRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +23,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('cursos', CursoController::class)->names('cursos');
+Route::resource('contact', ContactController::class)->names('contact');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::post('/contact', function (HttpRequest $request) {
-    dd($request->input());
-});
+// Route::post('/contact', function (HttpRequest $request) {
+//     dd($request->input());
+// });
