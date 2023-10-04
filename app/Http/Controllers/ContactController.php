@@ -48,7 +48,8 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-         return view ('contact.show', compact('contact'));
+        $this->authorize('view', $contact);
+        return view ('contact.show', compact('contact'));
     }
 
     /**
@@ -56,6 +57,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
+        $this->authorize('update', $contact);
         return view ('contact.edit', compact('contact'));
     }
 
@@ -74,6 +76,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
+        $this->authorize('delete', $contact);
         $contact->delete();
         return redirect()->route('contact.index');
     }
