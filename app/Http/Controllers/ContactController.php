@@ -30,7 +30,7 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        $contact = new Contact();
+        //$contact = new Contact();
 
         // $contact->name=$request->name;
         // $contact->phone_number=$request->phone_number;
@@ -46,7 +46,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+         return view ('contact.show', compact('contact'));
     }
 
     /**
@@ -54,7 +54,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view ('contact.edit', compact('contact'));
     }
 
     /**
@@ -62,7 +62,9 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
-        //
+        $contact->update($request->all());
+        //$this->modal
+        return redirect()->back();
     }
 
     /**
@@ -70,6 +72,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->route('contact.index');
     }
 }

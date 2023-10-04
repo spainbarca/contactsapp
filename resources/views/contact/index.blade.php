@@ -35,7 +35,7 @@
                                         <th>Correo</th>
                                         <th>Edad</th>
                                         <th>Teléfono</th>
-                                        <th width="20%">Acciones</th>
+                                        <th colspan="3" class="text-center">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,9 +46,19 @@
                                             <td>{{ $contact->email }}</td>
                                             <td>{{ $contact->age }}</td>
                                             <td>{{ $contact->phone_number }}</td>
-                                            <td width="20%">
-                                                <button type="button" class="btn btn-warning waves-effect waves-light">{{ __('Editar') }}</button>
-                                                <button type="button" class="btn btn-danger waves-effect waves-light">{{ __('Eliminar') }}</button>
+                                            <td>
+                                                <a href="{{ route('contact.show',$contact) }}"><button type="button" class="btn btn-dark waves-effect waves-light"><i class="mdi mdi-eye-settings-outline"></i></button></a>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#contactEdit{{ $contact->id }}"><i class="dripicons-document-edit"></i></button>
+                                            </td>
+                                            @include('contact.edit')
+                                            <td>
+                                                <form action="{{ route('contact.destroy', $contact) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                <button type="submit" class="btn btn-danger waves-effect waves-light"><i class="dripicons-trash"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
