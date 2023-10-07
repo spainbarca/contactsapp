@@ -39,7 +39,10 @@ class ContactController extends Controller
         $contact->user_id=auth()->id();
 
         $contact->save();
-        return redirect()->route('contact.index');
+        return redirect()->route('contact.index')->with('alert', [
+            'message' => "Contact $contact->name succesfully saved",
+            'type' => "success"
+        ]);
 
     }
 
@@ -66,9 +69,13 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
-        $contact->update($request->all());
+        $this->authorize('update', $contact);
+        $contact->update($request->validated());
         //$this->modal
-        return redirect()->back();
+        return redirect()->back()->with('alert', [
+            'message' => "Contact $contact->name succesfully updated",
+            'type' => "info"
+        ]);
     }
 
     /**
@@ -78,6 +85,9 @@ class ContactController extends Controller
     {
         $this->authorize('delete', $contact);
         $contact->delete();
-        return redirect()->route('contact.index');
+        return redirect()->route('contact.index')->with('alert', [
+            'message' => "Contact $contact->name succesfully deleted",
+            'type' => "success"
+        ]);
     }
 }
