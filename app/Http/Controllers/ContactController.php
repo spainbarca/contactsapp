@@ -73,7 +73,7 @@ class ContactController extends Controller
         $contact->update($request->validated());
         //$this->modal
         return redirect()->back()->with('alert', [
-            'message' => "Contact $contact->name succesfully updated",
+            'message' => "Contact $contact->name successfully updated",
             'type' => "info"
         ]);
     }
@@ -86,7 +86,7 @@ class ContactController extends Controller
         $this->authorize('delete', $contact);
         $contact->delete();
         return redirect()->route('contact.index')->with('alert', [
-            'message' => "Contact $contact->name succesfully deleted",
+            'message' => "Contact $contact->name successfully deleted",
             'type' => "success"
         ]);
     }
