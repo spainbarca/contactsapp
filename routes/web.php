@@ -1,10 +1,9 @@
 <?php
 
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
-use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +28,14 @@ Route::resource('contact', ContactController::class)->names('contact');
 // Route::post('/contact', function (HttpRequest $request) {
 //     dd($request->input());
 // });
+
+Route::get('/billing-portal', function (Request $request) {
+    return $request->user()->redirectToBillingPortal();
+});
+
+Route::get('/subscription-checkout', function (Request $request) {
+    return $request->user()
+        ->newSubscription('default', config('stripe.price_id'))
+        ->checkout();
+});
+

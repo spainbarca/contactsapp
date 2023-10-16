@@ -25,7 +25,8 @@ class StoreContactRequest extends FormRequest
             'name'=>'required|min:5',
             'phone_number' =>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
             'email'=>'required|email',
-            'age' =>'required|numeric|min:15'
+            'age' =>'required|numeric|min:15',
+            'profile_picture' => 'image|nullable'
         ];
     }
 }

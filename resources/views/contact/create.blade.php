@@ -8,7 +8,7 @@
                 <div class="card-header">Create new Contact</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('contact.store') }}" novalidate>
+                    <form method="POST" action="{{ route('contact.store') }}" enctype="multipart/form-data" novalidate>
                         @csrf
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -59,6 +59,19 @@
                                 <input id="phone_number" type="tel" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
 
                                 @error('phone_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="profile_picture" class="col-md-4 col-form-label text-md-end">File Browser</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control @error('profile_picture') is-invalid @enderror" id="profile_picture" name="profile_picture">
+                                <label class="custom-file-label " for="profile_picture">Choose file</label>
+                                @error('profile_picture')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -30,13 +30,18 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        $contact = new Contact();
+        if($request->hasFile('profile_picture')){
+            $path = $request->file('profile_picture')->store('images/profiles','public');
+        }
 
+        $contact = new Contact();
+  
         $contact->name=$request->name;
         $contact->phone_number=$request->phone_number;
         $contact->email=$request->email;
         $contact->age=$request->age;
         $contact->user_id=auth()->id();
+        $contact->profile_picture=$path;
 
         $contact->save();
         return redirect()->route('contact.index')->with('alert', [

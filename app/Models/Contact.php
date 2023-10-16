@@ -12,7 +12,7 @@ class Contact extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'phone_number','email','age'
+        'name', 'phone_number','email','age','profile_picture'
     ];
 
     public function user(){
