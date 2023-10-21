@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Http\Request;
 
 /*
@@ -23,19 +24,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('contact', ContactController::class)->names('contact');
+Route::middleware(['auth','subscription'])->resource('contact', ContactController::class)->names('contact');
 
-// Route::post('/contact', function (HttpRequest $request) {
-//     dd($request->input());
-// });
-
-Route::get('/billing-portal', function (Request $request) {
-    return $request->user()->redirectToBillingPortal();
-});
-
-Route::get('/subscription-checkout', function (Request $request) {
-    return $request->user()
-        ->newSubscription('default', config('stripe.price_id'))
-        ->checkout();
-});
-
+Route::get('/subscription-checkout', [StripeController::class, 'checkout'])->name('checkout');
+Route::get('/billing-portal', [StripeController::class, 'billingPortal'])->name('billing-portal');
+Route::get('/free-trial-end', [StripeController::class, 'freeTrialEnd'])->name('free-trial-end');
